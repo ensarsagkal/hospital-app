@@ -1,24 +1,19 @@
 import React from "react";
-import { useState } from "react";
+
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
 
-const Addmodal = ({ handleClose, show,name }) => {
-  const [appointment,setAppointment]=useState({
-    doctorName: name,
-    patientName:"",
-    appointmentDate:""
-  })
+const Addmodal = ({ handleClose, show,name ,appointment,setAppointment}) => {
+  
   const {doctorName,patientName,appointmentDate}=appointment
-  const handleName=(e)=>{
-    setAppointment({...appointment,[e.target.id]:e.target.value})
+  const handleInput=(e)=>{
+    setAppointment({...appointment,doctorName:name,[e.target.id]:e.target.value})
   }
-  const handleDate=(e)=>{
-    setAppointment({...appointment,[e.target.id]:e.target.value})
-  }
+
   const handleAppointmenSubmit =(e)=>{
     e.preventDefault()
+ 
     alert("appointment has been saved")
     handleClose()
 
@@ -39,7 +34,7 @@ const Addmodal = ({ handleClose, show,name }) => {
             <Form.Control
               type="text"
               placeholder="Enter your name"
-              onChange={handleName}
+              onChange={handleInput}
               id='patientName'
               value={patientName}
               autoFocus
@@ -52,7 +47,7 @@ const Addmodal = ({ handleClose, show,name }) => {
           </Form.Label>
           <Form.Control
             type="datetime-local"
-            onChange={handleDate}
+            onChange={handleInput}
             id='appointmentDate'
             value={appointmentDate}
             

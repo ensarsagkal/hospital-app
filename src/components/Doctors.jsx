@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-const Doctors = () => {
+const Doctors = ({appointment,setAppointment}) => {
   return (
     <Container>
       <h3>Our Doctors</h3>
@@ -13,7 +13,7 @@ const Doctors = () => {
         
         {doctorData.map((data) => (
           <Col key={data.id}>
-            <CardDoctor data={data} />
+            <CardDoctor data={data} appointment={appointment} setAppointment={setAppointment} />
           </Col>
         ))}
       </Row>

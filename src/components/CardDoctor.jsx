@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Addmodal from "./Addmodal";
 
-const CardDoctor = ({ data }) => {
+const CardDoctor = ({ data,appointment,setAppointment }) => {
 
   const [show, setShow] = useState(false);
 
@@ -21,7 +21,7 @@ const CardDoctor = ({ data }) => {
           <Card.Text>{dep}</Card.Text>
         </Card.Body>
       </Card>
-      {<Addmodal name={name} show={show} handleClose={handleClose}/>}
+      {<Addmodal name={name} show={show} handleClose={handleClose} appointment={appointment} setAppointment={setAppointment}  />}
     </div>
   );
 };

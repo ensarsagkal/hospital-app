@@ -21,7 +21,7 @@ const CardDoctor = ({ data }) => {
           <Card.Text>{dep}</Card.Text>
         </Card.Body>
       </Card>
-      {show && <Addmodal name={name} show={show} handleClose={handleClose}/>}
+      {<Addmodal name={name} show={show} handleClose={handleClose}/>}
     </div>
   );
 };

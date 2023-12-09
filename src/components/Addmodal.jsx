@@ -2,28 +2,72 @@ import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from 'react-bootstrap/Form';
 
 const Addmodal = ({ handleClose, show,name }) => {
-  console.log(name);
+  const [appointment,setAppointment]=useState({
+    doctorName: name,
+    patientName:"",
+    appointmentDate:""
+  })
+  const {doctorName,patientName,appointmentDate}=appointment
+  const handleName=(e)=>{
+    setAppointment({...appointment,[e.target.id]:e.target.value})
+  }
+  const handleDate=(e)=>{
+    setAppointment({...appointment,[e.target.id]:e.target.value})
+  }
+  const handleAppointmenSubmit =(e)=>{
+    e.preventDefault()
+    alert("appointment has been saved")
+    handleClose()
+
+  }
+  // console.log(name);
     return (
     
     <div>
-      {/* <Button variant="primary" onClick={handleShow}>
-      Launch demo modal
-    </Button> */}
+     
       <Modal show={show} onHide={handleClose}>
+        <Form onSubmit={handleAppointmenSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title><h4 className='text-danger'>Appointment For {name}</h4></Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+        <Form.Group className="mb-3" >
+            <Form.Label><p className="fw-bold">Patient Name</p></Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your name"
+              onChange={handleName}
+              id='patientName'
+              value={patientName}
+              autoFocus
+              // required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+          <Form.Label>
+           <p>Date</p>
+          </Form.Label>
+          <Form.Control
+            type="datetime-local"
+            onChange={handleDate}
+            id='appointmentDate'
+            value={appointmentDate}
+            
+          />
+        </Form.Group>
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="success" type="submit">
+            Submit
+          </Button>
+          <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
         </Modal.Footer>
+        </Form>
       </Modal>
     
     </div>

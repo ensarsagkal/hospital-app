@@ -1,9 +1,13 @@
 import React from 'react'
 
 const AppoinmentList = ({appointment}) => {
-    console.log(appointment);
+   
   return (
-    <div>AppoinmentList</div>
+    <div>
+   {appointment.map((item,index)=>(
+    <div key={index}>{item.patient}</div>
+   ))}
+   </div>
   )
 }
 

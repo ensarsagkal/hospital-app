@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 const Addmodal = ({ handleClose, show, name, appointment, setAppointment }) => {
-  const { doctorName, appointmentId, patientName, appointmentDate } =
+  const { doctorName, appointmentId, patient, day } =
     appointment;
-  const handleInput = () => {};
+  const [patientName,setPatientName]=useState("")
+  const [date,setDate]=useState("")
 
   const handleAppointmenSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +17,8 @@ const Addmodal = ({ handleClose, show, name, appointment, setAppointment }) => {
       ...appointment,
       {
         id: new Date().getTime(),
-        patient: e.target.patient.value,
-        day: e.target.appointmentDate.value,
+        patient: patientName,
+        day:date,
         consulted: false,
         doctor: name,
       },
@@ -25,7 +26,7 @@ const Addmodal = ({ handleClose, show, name, appointment, setAppointment }) => {
 
     handleClose();
   };
-  // console.log(name);
+  // console.log(appointment);
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -43,7 +44,7 @@ const Addmodal = ({ handleClose, show, name, appointment, setAppointment }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter your name"
-                // onChange={handleInput}
+                onChange={(e)=>setPatientName(e.target.value)}
                 id="patient"
                 // value={patientName || ""}
                 autoFocus
@@ -56,7 +57,7 @@ const Addmodal = ({ handleClose, show, name, appointment, setAppointment }) => {
               </Form.Label>
               <Form.Control
                 type="datetime-local"
-                // onChange={handleInput}
+                onChange={(e)=>setDate(e.target.value)}
                 id="appointmentDate"
                 // value={appointmentDate || ""}
               />

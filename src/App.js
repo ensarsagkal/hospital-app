@@ -1,4 +1,5 @@
 import AppoinmentList from "./components/AppoinmentList"
+import "./App.css"
 import Doctors from "./components/Doctors"
 import { useState } from "react";
 import { appointmentData } from "./helper/data";

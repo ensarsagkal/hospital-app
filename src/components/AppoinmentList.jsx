@@ -4,15 +4,19 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { TiDelete } from "react-icons/ti";
 
-const AppoinmentList = ({appointment}) => {
+const AppoinmentList = ({appointment,handleDelete,handleDoubleClick}) => {
    
   return (
  <Container>
   <h3>
-    Appointment List
+    {appointment.length===0 && <img src='./img/appointment.jpg' alt='appointment' width="70%"/> }
+  
   </h3>
   {appointment.map(({id,patient,consulted,doctor,day})=>(
-    <div key={id} className={consulted ? "appointments consulted":"appointments"}>
+    <div   key={id}
+    className={consulted ? "appointments consulted" : "appointments"}
+    role="button"
+    onDoubleClick={() => handleDoubleClick(id)}>
       <Row className='justify-content-between align-items-center'>
         <Col>
         <h4>{patient}</h4>
@@ -23,7 +27,7 @@ const AppoinmentList = ({appointment}) => {
         <h5>Time:{new Date(day).toLocaleTimeString("tr")}</h5>
         </Col> 
         <Col className='text-end'>
-        <TiDelete className='text-danger fs-1' type='button'/>
+        <TiDelete className='text-danger fs-1' type='button'onClick={()=>handleDelete(id)}/>
         </Col>
       </Row>
     </div>
